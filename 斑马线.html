@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>斑马线</title>
+<script>
+window.onload=function()
+{
+	var oul=document.getElementsByTagName("ul")[0];
+	var oli=oul.getElementsByTagName("li");
+	for(var i=0;i<oli.length;i++)
+	{
+		if(i%2)
+		{
+			oli[i].className='abc1';
+			//添加类名，而不用下面这行语句的原因：下面这行是添加了行内样式，当触发onmouseover事件时，添加了一个类名，即添加了一个嵌入样式，而行内样式的权值高于嵌入样式，所以不显示
+			//oli[i].style.background="#ccc";
+		}
+		else{
+			oli[i].className='abc2';
+			}	
+	}	
+	for(var i=0;i<oli.length;i++)
+	{
+		//给每一行添加一个oldClassName属性，用来保存原来的类名
+		oli[i].oldClassName=oli[i].className;
+		oli[i].onmouseover=function(){
+			this.className='active';
+		}
+		oli[i].onmouseout=function(){
+			this.className=this.oldClassName;
+		}
+	}
+	
+	
+}
+</script>
+<style>
+.active{background:red;}
+.abc1{background:#ccc;}
+.abc2{background:pink;}
+</style>
+</head>
+
+<body>
+<ul>
+	<li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+
+</body>
+</html>

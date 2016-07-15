@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>样式函数</title>
+</head>
+
+<body>
+<div id="div1" style="width:200px;height:200px;background:green;"></div>
+<script>
+function cssColor(obj,att,val)
+{
+	if(arguments.length==2)
+	{
+		return obj.style[att];
+	}
+	else
+	{
+		obj.style[att]=val;
+	}
+}
+	window.onload=function(){
+		var odiv=document.getElementById("div1");
+		alert(cssColor(odiv,'width'));
+		cssColor(odiv,'background','red');
+		}
+</script>
+</body>
+</html>

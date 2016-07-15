@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>选项卡</title>
+<style>
+#box{
+	width:400px;
+	height:400px;
+	border:1px solid red;
+	margin:auto;
+	}
+#box div{
+	width:400px;
+	height:300px;
+	background:#ccc;
+	margin-top:10px;
+	display:none;}
+.active{
+		background:#C63;}
+</style>
+
+</head>
+
+<body>
+<div id="box">
+	<input class="active" type="button" value="新闻" />
+    <input type="button" value="娱乐" />
+    <input type="button" value="军事" />
+    <input type="button" value="体育" />
+    <div style="display:block;" >1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+</div>
+<script>
+
+window.onload=function()
+{
+	var obbox=document.getElementById("box");
+	var obbutton=obbox.getElementsByTagName("input");
+	var obdiv=obbox.getElementsByTagName("div");
+	//这个for循环的作用是给每个按钮加上一个onclick事件，加完之后i等于4，也就是说i就会永远等于4，就失效了，onclick事件是一个状态，每次通过this来调用当前单击的这个对象，因为this总是引用调用它的当前对象
+	var helper=function(i)
+	{
+		return function(){
+		helper1();
+		this.className="active";
+		obdiv[i].style.display="block";
+		};
+	}
+	var helper1=function()
+	{
+		var j;
+		for(j=0;j<obbutton.length;j++)
+			{
+				obbutton[j].className='';
+				obdiv[j].style.display="none";
+			}
+	}
+	for(var i=0;i<obbutton.length;i++)
+	{
+		/*obbutton[i].index=i;
+		obbutton[i].onclick=function(){
+			for(var j=0;j<obbutton.length;j++)
+			{
+				obbutton[j].className='';
+				obdiv[j].style.display="none";
+			}
+				this.className="active";
+				obdiv[this.index].style.display="block";
+
+		}	*/
+		//方法调用
+         obbutton[i].onclick=helper(i);
+	}
+	};
+</script>
+</body>
+</html>

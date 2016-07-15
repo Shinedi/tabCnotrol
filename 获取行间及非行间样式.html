@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>获取行间及非行间样式</title>
+<style>
+#odiv{
+	width:200px;
+	height:200px;
+	}
+</style>
+</head>
+
+<body>
+<div id="odiv" style="background:green;">
+</div>
+<script>
+function cssColor(obj,att,val)
+{
+	if(arguments.length==2)
+	{
+		if(obj.currentStyle)
+		{
+			return obj.currentStyle[att];	
+		}
+		else
+		{
+			return getComputedStyle(obj,false)[att];
+		}
+	}
+	else
+	{
+		obj.style[att]=val;
+	}
+}
+window.onload=function(){
+	var odiv=document.getElementById("odiv");
+	alert(cssColor(odiv,"width"));
+	alert(cssColor(odiv,"background"));//复合样式不能获取
+	cssColor(odiv,"background","red");
+	cssColor(odiv,"width","400px");
+	}
+</script>
+</body>
+</html>

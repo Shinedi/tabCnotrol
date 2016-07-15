@@ -1,0 +1,31 @@
+<!DOCTYPE >
+<html >
+	<head>
+	    <meta charset="utf-8" />
+		<title>闭包</title>
+		
+	</head>
+	<body>
+		<input type="button" value="1" />
+		<input type="button" value="2" />
+		<input type="button" value="3" />
+		<input type="button" value="4" />
+		<script>
+			window.onload=function()
+			{
+				var nodes=document.getElementsByTagName("input");
+				var helper=function(i)
+				{
+					return function()
+					{alert(++i);};
+				};
+				var i;
+				//避免在循环中创建函数，它可能只会带来无谓的计算，还会引起混淆。可以在循环之外创建一个辅助函数，让这个辅助函数再返回一个绑定了当前i值的函数
+				for(i=0;i<nodes.length;i++)
+				{
+					nodes[i].onclick=helper(i);
+				}
+			};
+		</script>
+	</body>
+</html>
